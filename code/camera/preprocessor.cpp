@@ -49,7 +49,7 @@ void Preprocessor::__preprocess_frame(cv::UMat frame) {
     // Modifier frame
     if (m_modifier) { m_modifier->modify(frame); }
     // Rotate frame
-    double angle = static_cast<double>m_rotation_angle;
+    double angle = static_cast<double>(m_rotation_angle);
     rotate(frame, angle, frame);
     // Frame zoom
     zoom(frame, frame, m_zoom_factor);

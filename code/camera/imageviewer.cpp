@@ -27,7 +27,7 @@ ImageViewer::ImageViewer(CameraDisplay *parent, int fps_update_interval) :
     m_recorder(),
 
     m_rotate(false),
-    m_rotate_interval(25);
+    m_rotate_interval(25),
     m_fps_update_interval(fps_update_interval) {
 
     ui->setupUi(this);
