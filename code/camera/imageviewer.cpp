@@ -26,6 +26,8 @@ ImageViewer::ImageViewer(CameraDisplay *parent, int fps_update_interval) :
     m_converter(this),
     m_recorder(),
 
+    m_rotate(false),
+    m_rotate_interval(25);
     m_fps_update_interval(fps_update_interval) {
 
     ui->setupUi(this);
@@ -91,8 +93,7 @@ void ImageViewer::timerEvent(QTimerEvent *ev) {
         int frames = m_converter.get_and_reset_frames();
         double fps = 1000.0 * frames / m_fps_update_interval;
         set_frame_rate(fps);
-    }
-    else if(ev->timerId() == m_rotation_timer.timerId()) {
+    } else if (ev->timerId() == m_rotation_timer.timerId()) {
         Q_EMIT increment_rotation();
     }
 }
@@ -131,8 +132,7 @@ void ImageViewer::toggle_rotation() {
     m_rotate = !m_rotate;
     if (m_rotate) {
         m_rotation_timer.start(m_rotate_interval, this);
-    }
-    else {
+    } else {
         m_rotation_timer.stop();
     }
 
